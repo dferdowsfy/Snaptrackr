@@ -1,0 +1,57 @@
+Core Goal:
+
+Replace the standard Perplexity search with a Google Sheets lookup when a barcode is scanned. Use Perplexity only to retrieve a weblink after the item details are found in the Google Sheet.
+
+Data Source:
+
+The provided Google Sheet: https://docs.google.com/spreadsheets/d/1aPNjAIwY3BBKc-pyMvGYWQ1Skoncm4i7hCBwHnuyajM/edit?usp=sharing
+
+Step-by-Step Instructions (Revised & Clarified):
+
+Barcode Scanning Input:
+
+The application (presumably Perplexity in this context, but these instructions are generalizable) receives a barcode scan as input.
+
+Store Selection (from 'compare' tab):
+
+The user must have previously selected a store from a list. This list is populated from the 'compare' tab of the Google Sheet. Crucially, we need to know how this store selection is stored. Is it a string (e.g., "Walmart", "Target")? Is it an index (e.g., 1, 2)? We need to know this to search the correct sheet.
+
+Clarification Needed: Is the "compare" tab used only for displaying the list of stores to the user, or is it also used in the lookup process? The original instructions are ambiguous. I'll assume the user's store selection is stored separately as a string representing the store name.
+
+Sheet Selection (Based on Store):
+
+The application determines the correct sheet within the Google Sheet to search. The selected store name (from step 2) directly corresponds to the sheet name. For example, if the user selected "Walmart", the application should search the sheet named "Walmart".
+
+Important: The application must handle cases where the selected store does not have a corresponding sheet. This could be due to user error (selecting a store that isn't in the database) or a data inconsistency. The application should display an appropriate error message to the user (e.g., "Store not found in database").
+
+Item Lookup (Within the Selected Sheet):
+
+Within the chosen sheet (e.g., "Walmart"), search Column B ("Item") for the scanned barcode.
+
+Assumption: The barcode scan result is stored as a string and is expected to match exactly the contents of a cell in Column B. There's no fuzzy matching.
+
+Important: Handle the case where the barcode is not found in Column B of the selected sheet. Again, display a clear error message (e.g., "Item not found for this store").
+
+Data Retrieval (If Item is Found):
+
+If a match is found in Column B:
+
+Retrieve the following data from the same row of the matched item:
+
+Display Item: (Likely the same as Column B, the "Item" column)
+
+Category: (From Column D, labelled "Category")
+
+Price: (From Column E, labelled "Price")
+
+Price per unit: (From Column F, labelled "Price Per Unit")
+
+Weblink: (From Column C, labelled "Link")
+
+Perplexity API Call (Only for Weblink Retrieval):
+
+The original instructions seem to want Perplexity to fetch a weblink, but the weblink is already in the Google Sheet. This step is likely unnecessary. I will remove this instruction and add it as a different approach below.
+
+Display Results:
+
+Present the retrieved data (Display Item, Category, Price, Price per unit, and Weblink) to the user.
