@@ -1,43 +1,7 @@
-//  SnaptrackrV1App.swift
 import SwiftUI
-import SwiftData
 
-@main
-struct SnaptrackrV1App: App {
-    // Create the SINGLE shared instance of AuthManager.  This is crucial.
-    @StateObject private var authManager = AuthManager.shared
-
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .environmentObject(authManager) // Inject AuthManager into the environment
-                .onAppear {
-                    setupAppearance()
-                }
-                .customNavigationBar() // Apply our custom navigation bar style
-        }
-        .modelContainer(sharedModelContainer)
-    }
-    
-    // Setup appearance function
-    func setupAppearance() {
-        // Configure global appearance settings
-        UITableView.appearance().backgroundColor = .clear
-        
-        // Apply custom navigation bar appearance
+struct CustomNavigationBarModifier: ViewModifier {
+    init() {
         let appearance = UINavigationBarAppearance()
         
         // Create a gradient layer
@@ -53,11 +17,12 @@ struct SnaptrackrV1App: App {
         gradientLayer.locations = [0.0, 0.075, 0.447]
         
         // Set the start and end points to create a radial effect
+        // The values are approximations of the CSS radial-gradient
         gradientLayer.startPoint = CGPoint(x: 0.052, y: 0.072) // 5.2% 7.2%
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
         
         // Create a UIImage from the gradient layer
-        let renderer = UIGraphicsImageRenderer(bounds: CGRect(x: 0, y: 0, width: 500, height: 100))
+        let renderer = UIGraphicsImageRenderer(bounds: CGRect(x: 0, y: 0, width: 1, height: 1))
         let gradientImage = renderer.image { ctx in
             gradientLayer.frame = ctx.format.bounds
             gradientLayer.render(in: ctx.cgContext)
@@ -81,4 +46,14 @@ struct SnaptrackrV1App: App {
         // Set the tint color for navigation bar items
         UINavigationBar.appearance().tintColor = .white
     }
+    
+    func body(content: Content) -> some View {
+        content
+    }
 }
+
+extension View {
+    func customNavigationBar() -> some View {
+        self.modifier(CustomNavigationBarModifier())
+    }
+} 
