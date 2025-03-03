@@ -27,3 +27,6 @@ struct AnalyticsView: View {
         }
     }
 } 
+#Preview {
+    AnalyticsView()
+}

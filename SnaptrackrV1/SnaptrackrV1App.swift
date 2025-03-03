@@ -22,12 +22,12 @@ struct SnaptrackrV1App: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(authManager) // Inject AuthManager into the environment
+            MainView()
+                .environmentObject(authManager)
                 .onAppear {
                     setupAppearance()
                 }
-                .customNavigationBar() // Apply our custom navigation bar style
+                .customNavigationBar()
         }
         .modelContainer(sharedModelContainer)
     }

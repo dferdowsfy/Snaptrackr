@@ -105,7 +105,7 @@ struct OnboardingView: View {
                             .foregroundColor(.white)
                             .padding()
                             .frame(width: 100)
-                            .background(Color.blue)
+                            .background(Color.green)
                             .cornerRadius(10)
                     }
                 }
@@ -219,8 +219,10 @@ struct OnboardingView: View {
                 .padding(.horizontal)
             
             Text("Select all that apply")
-                .font(.subheadline)
-                .foregroundColor(.white.opacity(0.8))
+                .font(.system(size: 19, weight: .bold))
+                .multilineTextAlignment(.center)
+                .foregroundColor(.white)
+                .padding(.horizontal)
             
             VStack(spacing: 16) {
                 ForEach(Array(UserProfile.RegularPurchase.allCases), id: \.self) { purchase in
@@ -252,7 +254,7 @@ struct OnboardingView: View {
             HStack {
                 Image(systemName: icon)
                     .font(.system(size: 20))
-                    .foregroundColor(.white)
+                    .foregroundColor(.blue)
                     .frame(width: 30)
                 
                 Text(title)
@@ -312,7 +314,7 @@ struct OnboardingView: View {
                     }
                 } else {
                     RoundedRectangle(cornerRadius: 4)
-                        .stroke(Color.white.opacity(0.6), lineWidth: 2)
+                        .stroke(Color.blue.opacity(0.6), lineWidth: 2)
                         .frame(width: 24, height: 24)
                 }
             }
@@ -353,4 +355,7 @@ struct OnboardingView: View {
         
         dismiss()
     }
+}
+#Preview {
+    OnboardingView()
 }

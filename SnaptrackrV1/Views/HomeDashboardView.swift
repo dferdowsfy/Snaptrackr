@@ -21,3 +21,6 @@ struct HomeDashboardView_Previews: PreviewProvider {
         HomeDashboardView()
     }
 } 
+#Preview {
+    HomeDashboardView()
+}

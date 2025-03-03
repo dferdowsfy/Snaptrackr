@@ -18,10 +18,10 @@ enum Tab {
     
     var title: String {
         switch self {
-        case .dashboard: return "Dashboard"
-        case .inventory: return "My Inventory"
+        case .dashboard: return "Home"
+        case .inventory: return "My Stuff"
         case .addItems: return "Add Items"
-        case .priceCompare: return "Find the Best Price"
+        case .priceCompare: return "Search"
         case .settings: return "Settings"
         }
     }
@@ -30,7 +30,9 @@ enum Tab {
 struct MainView: View {
     @StateObject private var authManager = AuthManager.shared
     @State private var selectedTab: Tab = .dashboard
-    @State private var isShowingCamera = false
+    @State private var showScanOptions = false
+    @State private var showBarcodeScanner = false
+    @State private var showReceiptScanner = false
     @State private var scannedImage: UIImage?
     @State private var scanType: ScanType = .unknown
     @State private var scannedBarcode: String?
@@ -39,7 +41,6 @@ struct MainView: View {
     @State private var itemsAdded = 0
     @State private var selectedStore = "Unknown Store"
     @State private var showStoreSelection = false
-    @State private var showScanOptions = false
     
     @ObservedObject private var inventoryManager = InventoryManager.shared
     
@@ -51,13 +52,14 @@ struct MainView: View {
             // Updated background with new radial gradient
             RadialGradient(
                 gradient: Gradient(colors: [
-                    Color(red: 68/255, green: 36/255, blue: 164/255),
-                    Color(red: 84/255, green: 212/255, blue: 228/255)
+                    Color(red: 151/255, green: 41/255, blue: 200/255),
+                    Color(red: 100/255, green: 10/255, blue: 300/255)
                 ]),
-                center: .init(x: 0.002, y: 0.005), // 0.2% 0.5%
+                center: .init(x: 0.1, y: 0.2), // 10% 20%
                 startRadius: 0,
                 endRadius: 1000
             )
+            .ignoresSafeArea()
             .ignoresSafeArea()
             
             // Content based on selected tab
@@ -66,7 +68,8 @@ struct MainView: View {
                 case .dashboard:
                     InventoryView()
                 case .addItems:
-                    AddItemsView()
+                    // This case won't be used directly as it's handled by the scan button
+                    EmptyView()
                 case .inventory:
                     ShoppingListView()
                 case .priceCompare:
@@ -92,7 +95,7 @@ struct MainView: View {
                             .foregroundColor(.white)
                     }
                     .padding(30)
-                    .background(Color(red: 68/255, green: 36/255, blue: 164/255).opacity(0.7))
+                    .background(Color(red: 30/255, green: 36/255, blue: 164/255).opacity(0.7))
                     .cornerRadius(20)
                 }
             }
@@ -126,79 +129,10 @@ struct MainView: View {
                 }
             }
             
-            // Smart Scanner Hub (expanded from + button)
-            if showScanOptions {
-                VStack(spacing: 15) {
-                    Button(action: {
-                        withAnimation(.spring()) {
-                            showScanOptions = false
-                        }
-                        // Show store selection for receipt scanning
-                        showStoreSelection = true
-                    }) {
-                        HStack {
-                            Image(systemName: "doc.text.viewfinder")
-                                .font(.system(size: 20, weight: .semibold))
-                            Text("Scan Receipt")
-                                .font(.system(size: 16, weight: .semibold))
-                        }
-                        .foregroundColor(.white)
-                        .frame(width: 180, height: 50)
-                        .background(
-                            LinearGradient(
-                                gradient: Gradient(colors: [
-                                    Color(red: 68/255, green: 36/255, blue: 164/255),
-                                    Color(red: 84/255, green: 212/255, blue: 228/255)
-                                ]),
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
-                        .cornerRadius(25)
-                        .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 3)
-                    }
-                    .transition(.scale.combined(with: .opacity))
-                    
-                    Button(action: {
-                        withAnimation(.spring()) {
-                            showScanOptions = false
-                        }
-                        // Direct to barcode scanning
-                        isShowingCamera = true
-                    }) {
-                        HStack {
-                            Image(systemName: "barcode.viewfinder")
-                                .font(.system(size: 20, weight: .semibold))
-                            Text("Scan Barcode")
-                                .font(.system(size: 16, weight: .semibold))
-                        }
-                        .foregroundColor(.white)
-                        .frame(width: 180, height: 50)
-                        .background(
-                            LinearGradient(
-                                gradient: Gradient(colors: [
-                                    Color(red: 68/255, green: 36/255, blue: 164/255),
-                                    Color(red: 84/255, green: 212/255, blue: 228/255)
-                                ]),
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
-                        .cornerRadius(25)
-                        .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 3)
-                    }
-                    .transition(.scale.combined(with: .opacity))
-                }
-                .padding(.bottom, 100)
-                .transition(.scale.combined(with: .opacity))
-            }
-            
-            // Chatbot bubble
-            ChatbotBubble()
-                .zIndex(1) // Ensure it's above other elements
-            
-            // Custom tab bar anchored to the bottom
-            ModernTabBar(selectedTab: $selectedTab.intValue)
+            // Custom tab bar
+            CustomTabBar(selectedTab: $selectedTab, showScanOptions: $showScanOptions)
+                .padding(.horizontal)
+                .padding(.bottom, 8)
         }
         .onAppear {
             // Request camera permission when view appears
@@ -207,17 +141,19 @@ struct MainView: View {
             // Set up notification observers for scanner options
             setupNotificationObservers()
         }
-        .sheet(isPresented: $isShowingCamera) {
-            CameraLauncherView(
-                isPresented: $isShowingCamera,
-                isProcessing: $isProcessing,
-                itemsAdded: $itemsAdded,
-                selectedTab: $selectedTab,
-                showScanSuccessMessage: $showScanSuccessMessage,
-                selectedStore: selectedStore,
-                inventoryManager: inventoryManager
-            )
-            .edgesIgnoringSafeArea(.all)
+        .sheet(isPresented: $showScanOptions) {
+            // ScanOptionsView(
+            //     showScanOptions: $showScanOptions,
+            //     showBarcodeScanner: $showBarcodeScanner,
+            //     showReceiptScanner: $showReceiptScanner
+            // )
+            // .presentationDetents([.height(200)])
+        }
+        .fullScreenCover(isPresented: $showBarcodeScanner) {
+            ScannerView(scanType: .barcode)
+        }
+        .fullScreenCover(isPresented: $showReceiptScanner) {
+            ScannerView(scanType: .receipt)
         }
         
         // Store selection sheet
@@ -228,7 +164,7 @@ struct MainView: View {
                 buttons: availableStores.map { store in
                     .default(Text(store)) {
                         selectedStore = store
-                        isShowingCamera = true
+                        showReceiptScanner = true
                     }
                 } + [.cancel()]
             )
@@ -239,17 +175,17 @@ struct MainView: View {
     private func setupNotificationObservers() {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("OpenBarcodeScanner"), object: nil, queue: .main) { _ in
             self.scanType = .barcode
-            self.isShowingCamera = true
+            self.showBarcodeScanner = true
         }
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("OpenReceiptScanner"), object: nil, queue: .main) { _ in
             self.scanType = .receipt
-            self.showStoreSelection = true
+            self.showReceiptScanner = true
         }
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("OpenProductScanner"), object: nil, queue: .main) { _ in
             self.scanType = .barcode
-            self.isShowingCamera = true
+            self.showBarcodeScanner = true
         }
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name("OpenManualEntry"), object: nil, queue: .main) { _ in

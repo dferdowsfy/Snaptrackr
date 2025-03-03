@@ -109,3 +109,6 @@ struct CategoryChartView: View {
         }
     }
 } 
+#Preview {
+    CategoryChartView()
+}

@@ -2,11 +2,6 @@ import SwiftUI
 import AVFoundation
 import Vision
 
-// Define ScanType enum
-enum ScanType {
-    case barcode, receipt, unknown
-}
-
 struct AddItemsView: View {
     @State private var isShowingCamera = false
     @State private var scannedImage: UIImage?

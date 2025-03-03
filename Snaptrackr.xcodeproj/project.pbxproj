@@ -24,18 +24,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0259B9DF2D6F66130028A5D8 /* SnaptrackrV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnaptrackrV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0259B9F32D6F66160028A5D8 /* SnaptrackrV1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnaptrackrV1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0259B9FD2D6F66160028A5D8 /* SnaptrackrV1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnaptrackrV1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0259B9DF2D6F66130028A5D8 /* Snaptrackr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snaptrackr.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0259B9F32D6F66160028A5D8 /* SnaptrackrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnaptrackrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0259B9FD2D6F66160028A5D8 /* SnaptrackrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnaptrackrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		0259BA052D6F66160028A5D8 /* Exceptions for "SnaptrackrV1" folder in "SnaptrackrV1" target */ = {
+		0259BA052D6F66160028A5D8 /* Exceptions for "SnaptrackrV1" folder in "Snaptrackr" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 0259B9DE2D6F66130028A5D8 /* SnaptrackrV1 */;
+			target = 0259B9DE2D6F66130028A5D8 /* Snaptrackr */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -43,7 +43,7 @@
 		0259B9E12D6F66130028A5D8 /* SnaptrackrV1 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				0259BA052D6F66160028A5D8 /* Exceptions for "SnaptrackrV1" folder in "SnaptrackrV1" target */,
+				0259BA052D6F66160028A5D8 /* Exceptions for "SnaptrackrV1" folder in "Snaptrackr" target */,
 			);
 			path = SnaptrackrV1;
 			sourceTree = "<group>";
@@ -98,9 +98,9 @@
 		0259B9E02D6F66130028A5D8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0259B9DF2D6F66130028A5D8 /* SnaptrackrV1.app */,
-				0259B9F32D6F66160028A5D8 /* SnaptrackrV1Tests.xctest */,
-				0259B9FD2D6F66160028A5D8 /* SnaptrackrV1UITests.xctest */,
+				0259B9DF2D6F66130028A5D8 /* Snaptrackr.app */,
+				0259B9F32D6F66160028A5D8 /* SnaptrackrTests.xctest */,
+				0259B9FD2D6F66160028A5D8 /* SnaptrackrUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,9 +108,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0259B9DE2D6F66130028A5D8 /* SnaptrackrV1 */ = {
+		0259B9DE2D6F66130028A5D8 /* Snaptrackr */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0259BA062D6F66160028A5D8 /* Build configuration list for PBXNativeTarget "SnaptrackrV1" */;
+			buildConfigurationList = 0259BA062D6F66160028A5D8 /* Build configuration list for PBXNativeTarget "Snaptrackr" */;
 			buildPhases = (
 				0259B9DB2D6F66130028A5D8 /* Sources */,
 				0259B9DC2D6F66130028A5D8 /* Frameworks */,
@@ -123,16 +123,16 @@
 			fileSystemSynchronizedGroups = (
 				0259B9E12D6F66130028A5D8 /* SnaptrackrV1 */,
 			);
-			name = SnaptrackrV1;
+			name = Snaptrackr;
 			packageProductDependencies = (
 			);
 			productName = SnaptrackrV1;
-			productReference = 0259B9DF2D6F66130028A5D8 /* SnaptrackrV1.app */;
+			productReference = 0259B9DF2D6F66130028A5D8 /* Snaptrackr.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0259B9F22D6F66160028A5D8 /* SnaptrackrV1Tests */ = {
+		0259B9F22D6F66160028A5D8 /* SnaptrackrTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0259BA0B2D6F66160028A5D8 /* Build configuration list for PBXNativeTarget "SnaptrackrV1Tests" */;
+			buildConfigurationList = 0259BA0B2D6F66160028A5D8 /* Build configuration list for PBXNativeTarget "SnaptrackrTests" */;
 			buildPhases = (
 				0259B9EF2D6F66160028A5D8 /* Sources */,
 				0259B9F02D6F66160028A5D8 /* Frameworks */,
@@ -146,16 +146,16 @@
 			fileSystemSynchronizedGroups = (
 				0259B9F62D6F66160028A5D8 /* SnaptrackrV1Tests */,
 			);
-			name = SnaptrackrV1Tests;
+			name = SnaptrackrTests;
 			packageProductDependencies = (
 			);
 			productName = SnaptrackrV1Tests;
-			productReference = 0259B9F32D6F66160028A5D8 /* SnaptrackrV1Tests.xctest */;
+			productReference = 0259B9F32D6F66160028A5D8 /* SnaptrackrTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		0259B9FC2D6F66160028A5D8 /* SnaptrackrV1UITests */ = {
+		0259B9FC2D6F66160028A5D8 /* SnaptrackrUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0259BA0E2D6F66160028A5D8 /* Build configuration list for PBXNativeTarget "SnaptrackrV1UITests" */;
+			buildConfigurationList = 0259BA0E2D6F66160028A5D8 /* Build configuration list for PBXNativeTarget "SnaptrackrUITests" */;
 			buildPhases = (
 				0259B9F92D6F66160028A5D8 /* Sources */,
 				0259B9FA2D6F66160028A5D8 /* Frameworks */,
@@ -169,11 +169,11 @@
 			fileSystemSynchronizedGroups = (
 				0259BA002D6F66160028A5D8 /* SnaptrackrV1UITests */,
 			);
-			name = SnaptrackrV1UITests;
+			name = SnaptrackrUITests;
 			packageProductDependencies = (
 			);
 			productName = SnaptrackrV1UITests;
-			productReference = 0259B9FD2D6F66160028A5D8 /* SnaptrackrV1UITests.xctest */;
+			productReference = 0259B9FD2D6F66160028A5D8 /* SnaptrackrUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -199,7 +199,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0259B9DA2D6F66130028A5D8 /* Build configuration list for PBXProject "SnaptrackrV1" */;
+			buildConfigurationList = 0259B9DA2D6F66130028A5D8 /* Build configuration list for PBXProject "Snaptrackr" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -213,9 +213,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0259B9DE2D6F66130028A5D8 /* SnaptrackrV1 */,
-				0259B9F22D6F66160028A5D8 /* SnaptrackrV1Tests */,
-				0259B9FC2D6F66160028A5D8 /* SnaptrackrV1UITests */,
+				0259B9DE2D6F66130028A5D8 /* Snaptrackr */,
+				0259B9F22D6F66160028A5D8 /* SnaptrackrTests */,
+				0259B9FC2D6F66160028A5D8 /* SnaptrackrUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -271,12 +271,12 @@
 /* Begin PBXTargetDependency section */
 		0259B9F52D6F66160028A5D8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0259B9DE2D6F66130028A5D8 /* SnaptrackrV1 */;
+			target = 0259B9DE2D6F66130028A5D8 /* Snaptrackr */;
 			targetProxy = 0259B9F42D6F66160028A5D8 /* PBXContainerItemProxy */;
 		};
 		0259B9FF2D6F66160028A5D8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0259B9DE2D6F66130028A5D8 /* SnaptrackrV1 */;
+			target = 0259B9DE2D6F66130028A5D8 /* Snaptrackr */;
 			targetProxy = 0259B9FE2D6F66160028A5D8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -478,7 +478,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnaptrackrV1.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SnaptrackrV1";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snaptrackr.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Snaptrackr";
 			};
 			name = Debug;
 		};
@@ -497,7 +497,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SnaptrackrV1.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SnaptrackrV1";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snaptrackr.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Snaptrackr";
 			};
 			name = Release;
 		};
@@ -538,7 +538,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0259B9DA2D6F66130028A5D8 /* Build configuration list for PBXProject "SnaptrackrV1" */ = {
+		0259B9DA2D6F66130028A5D8 /* Build configuration list for PBXProject "Snaptrackr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0259BA092D6F66160028A5D8 /* Debug */,
@@ -547,7 +547,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0259BA062D6F66160028A5D8 /* Build configuration list for PBXNativeTarget "SnaptrackrV1" */ = {
+		0259BA062D6F66160028A5D8 /* Build configuration list for PBXNativeTarget "Snaptrackr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0259BA072D6F66160028A5D8 /* Debug */,
@@ -556,7 +556,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0259BA0B2D6F66160028A5D8 /* Build configuration list for PBXNativeTarget "SnaptrackrV1Tests" */ = {
+		0259BA0B2D6F66160028A5D8 /* Build configuration list for PBXNativeTarget "SnaptrackrTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0259BA0C2D6F66160028A5D8 /* Debug */,
@@ -565,7 +565,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0259BA0E2D6F66160028A5D8 /* Build configuration list for PBXNativeTarget "SnaptrackrV1UITests" */ = {
+		0259BA0E2D6F66160028A5D8 /* Build configuration list for PBXNativeTarget "SnaptrackrUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0259BA0F2D6F66160028A5D8 /* Debug */,

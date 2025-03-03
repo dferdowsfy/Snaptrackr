@@ -329,8 +329,10 @@ struct AuthContainerView: View {
                 OnboardingView()
                     .environmentObject(authManager)
             } else {
-                ModernMainView()
+                MainView()
             }
         }
     }
-} 
+}
+
+

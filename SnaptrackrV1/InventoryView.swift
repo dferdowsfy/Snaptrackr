@@ -357,65 +357,43 @@ struct RecentPriceDropsView: View {
 // Smart List Component
 struct SmartListView: View {
     let items: [GroceryItem]
-    @State private var isExpanded = false
-    @State private var cardHeight: CGFloat = 300
     
     var body: some View {
         VStack(spacing: 12) {
-            // Header with expand/collapse control
-            HStack {
-                Text("Smart List")
-                    .font(.system(size: 18, weight: .bold))
-                    .foregroundColor(.white)
-                
-                Spacer()
-                
-                Button(action: {
-                    withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
-                        isExpanded.toggle()
+            ForEach(items.prefix(3)) { item in
+                HStack {
+                    // Item info
+                    VStack(alignment: .leading) {
+                        Text(item.name)
+                            .font(.headline)
+                        Text(item.category)
+                            .font(.subheadline)
+                            .opacity(0.7)
                     }
-                }) {
-                    Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
-                        .foregroundColor(.white)
-                        .padding(8)
-                        .background(Color.white.opacity(0.2))
-                        .clipShape(Circle())
+                    
+                    Spacer()
+                    
+                    // Price and quantity
+                    VStack(alignment: .trailing) {
+                        Text("$\(item.price, specifier: "%.2f")")
+                            .font(.headline)
+                        Text("\(item.quantity)×")
+                            .font(.subheadline)
+                            .opacity(0.7)
+                    }
                 }
+                .padding()
+                .background(Color.white.opacity(0.1))
+                .cornerRadius(10)
             }
             
             if items.isEmpty {
                 Text("No items in your smart list")
-                    .italic()
-                    .foregroundColor(.white.opacity(0.7))
+                    .font(.headline)
+                    .opacity(0.7)
                     .padding()
-            } else {
-                // Scrollable list of items
-                ScrollView {
-                    LazyVStack(spacing: 12) {
-                        ForEach(items) { item in
-                            SmartListItemView(item: item)
-                        }
-                    }
-                }
-                .frame(height: isExpanded ? nil : cardHeight)
             }
         }
-        .gesture(
-            DragGesture()
-                .onChanged { value in
-                    if value.translation.height < 0 && !isExpanded {
-                        // Swiping up to expand
-                        withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
-                            isExpanded = true
-                        }
-                    } else if value.translation.height > 0 && isExpanded {
-                        // Swiping down to collapse
-                        withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
-                            isExpanded = false
-                        }
-                    }
-                }
-        )
     }
 }
 
@@ -638,21 +616,7 @@ struct DashboardCard<Content: View>: View {
         .background(
             RoundedRectangle(cornerRadius: 20)
                 .fill(Material.ultraThinMaterial)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(
-                            LinearGradient(
-                                gradient: Gradient(colors: [
-                                    Color.white.opacity(0.5),
-                                    Color.white.opacity(0.1)
-                                ]),
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            ),
-                            lineWidth: 1
-                        )
-                )
-                .shadow(color: Color(red: 84/255, green: 212/255, blue: 228/255).opacity(0.2), radius: 10, x: 0, y: 0)
+                .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 5)
         )
     }
 }
